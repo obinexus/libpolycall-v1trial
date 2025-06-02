@@ -1,0 +1,264 @@
+.
+├── bindings
+│   ├── fix_for_powershell.ps1
+│   ├── go-polycall
+│   │   ├── config
+│   │   ├── docs
+│   │   ├── examples
+│   │   │   └── test_client_api.go
+│   │   ├── src
+│   │   └── tests
+│   ├── java-polycall
+│   │   ├── config
+│   │   ├── docs
+│   │   ├── examples
+│   │   ├── src
+│   │   └── tests
+│   ├── node-polycall
+│   │   ├── config
+│   │   ├── core
+│   │   ├── docs
+│   │   ├── examples
+│   │   │   ├── banking-api
+│   │   │   │   ├── config
+│   │   │   │   ├── docs
+│   │   │   │   ├── package.json
+│   │   │   │   ├── README.md
+│   │   │   │   ├── src
+│   │   │   │   │   └── server.js
+│   │   │   │   └── tests
+│   │   │   ├── inventory-management
+│   │   │   │   ├── config
+│   │   │   │   ├── docs
+│   │   │   │   ├── package.json
+│   │   │   │   ├── src
+│   │   │   │   └── tests
+│   │   │   └── test_client_api.js
+│   │   ├── README.md
+│   │   ├── src
+│   │   └── tests
+│   └── py-polycall
+│       ├── config
+│       ├── docs
+│       ├── examples
+│       │   └── test_client_api.py
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   └── __init__.cpython-312.pyc
+│       ├── README.md
+│       ├── src
+│       │   ├── __init__.py
+│       │   └── modules
+│       │       ├── __init__.py
+│       │       ├── network_endpoint.py
+│       │       ├── polycall_client.py
+│       │       ├── protocol_handler.py
+│       │       ├── router.py
+│       │       └── state_machine.py
+│       └── tests
+├── config
+├── config.Polycallfile
+├── docs
+│   ├── architecture
+│   │   └── ARCHITECTURE.md
+│   ├── bindings
+│   ├── development
+│   ├── FEATURES.md
+│   ├── PLAN.md
+│   ├── projects
+│   └── USAGE.md
+├── examples
+│   └── test_client_api.lua
+├── images
+│   └── PolyCall.md
+├── libpolycall-v1trail
+│   ├── bin
+│   │   └── polycall
+│   ├── build
+│   │   ├── main.d
+│   │   ├── main.o
+│   │   ├── network.d
+│   │   ├── network.o
+│   │   ├── polycall.d
+│   │   ├── polycall_micro.d
+│   │   ├── polycall_micro.o
+│   │   ├── polycall.o
+│   │   ├── polycall_parser.d
+│   │   ├── polycall_parser.o
+│   │   ├── polycall_protocol.d
+│   │   ├── polycall_protocol.o
+│   │   ├── polycall_state_machine.d
+│   │   ├── polycall_state_machine.o
+│   │   ├── polycall_token.d
+│   │   ├── polycall_tokenizer.d
+│   │   ├── polycall_tokenizer.o
+│   │   └── polycall_token.o
+│   ├── config.Polycallfile
+│   ├── include
+│   │   ├── network.h
+│   │   ├── polycall_file_parser.h
+│   │   ├── polycall.h
+│   │   ├── polycall_micro.h
+│   │   ├── polycall_parser.h
+│   │   ├── polycall_protocol.h
+│   │   ├── polycall_state_machine.h
+│   │   ├── polycall_token.h
+│   │   └── polycall_tokenizer.h
+│   ├── lib
+│   │   ├── libpolycall.a
+│   │   └── libpolycall.so
+│   ├── main.c
+│   ├── Makefile
+│   ├── src
+│   │   ├── network.c
+│   │   ├── polycall.c
+│   │   ├── polycall_micro.c
+│   │   ├── polycall_parser.c
+│   │   ├── polycall_protocol.c
+│   │   ├── polycall_state_machine.c
+│   │   ├── polycall_token.c
+│   │   └── polycall_tokenizer.c
+│   └── test
+│       ├── test_polystate.c
+│       └── test_polystate_machine.c
+├── migration_backup
+│   ├── bindings
+│   │   └── pypolycall
+│   │       ├── docs
+│   │       ├── examples
+│   │       ├── __init__.py
+│   │       ├── __pycache__
+│   │       │   └── __init__.cpython-312.pyc
+│   │       ├── src
+│   │       │   ├── __init__.py
+│   │       │   └── modules
+│   │       │       ├── __init__.py
+│   │       │       ├── network_endpoint.py
+│   │       │       ├── polycall_client.py
+│   │       │       ├── protocol_handler.py
+│   │       │       ├── router.py
+│   │       │       └── state_machine.py
+│   │       └── tests
+│   ├── bindings_refactored
+│   │   └── node-polycall
+│   │       ├── core
+│   │       └── examples
+│   │           ├── banking-api
+│   │           │   ├── config
+│   │           │   ├── docs
+│   │           │   ├── package.json
+│   │           │   ├── README.md
+│   │           │   ├── src
+│   │           │   │   └── server.js
+│   │           │   └── tests
+│   │           └── inventory-management
+│   │               ├── config
+│   │               ├── docs
+│   │               ├── package.json
+│   │               ├── src
+│   │               └── tests
+│   └── examples
+│       ├── test_client_api.go
+│       ├── test_client_api.js
+│       ├── test_client_api.lua
+│       └── test_client_api.py
+├── organization_backup_20250602_134141
+│   ├── bindings
+│   │   ├── fix_for_powershell.ps1
+│   │   ├── go-polycall
+│   │   │   └── examples
+│   │   │       └── test_client_api.go
+│   │   ├── java-polycall
+│   │   │   └── examples
+│   │   ├── node-polycall
+│   │   │   ├── config
+│   │   │   ├── core
+│   │   │   ├── examples
+│   │   │   │   ├── banking-api
+│   │   │   │   │   ├── config
+│   │   │   │   │   ├── docs
+│   │   │   │   │   ├── package.json
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── src
+│   │   │   │   │   │   └── server.js
+│   │   │   │   │   └── tests
+│   │   │   │   ├── inventory-management
+│   │   │   │   │   ├── config
+│   │   │   │   │   ├── docs
+│   │   │   │   │   ├── package.json
+│   │   │   │   │   ├── src
+│   │   │   │   │   └── tests
+│   │   │   │   └── test_client_api.js
+│   │   │   └── README.md
+│   │   └── py-polycall
+│   │       ├── config
+│   │       ├── docs
+│   │       ├── examples
+│   │       │   └── test_client_api.py
+│   │       ├── __init__.py
+│   │       ├── __pycache__
+│   │       │   └── __init__.cpython-312.pyc
+│   │       ├── README.md
+│   │       ├── src
+│   │       │   ├── __init__.py
+│   │       │   └── modules
+│   │       │       ├── __init__.py
+│   │       │       ├── network_endpoint.py
+│   │       │       ├── polycall_client.py
+│   │       │       ├── protocol_handler.py
+│   │       │       ├── router.py
+│   │       │       └── state_machine.py
+│   │       └── tests
+│   ├── config
+│   ├── docs
+│   │   ├── FEATURES.md
+│   │   ├── PLAN.md
+│   │   └── USAGE.md
+│   └── projects
+│       ├── banking-system
+│       │   ├── config
+│       │   │   └── project.json
+│       │   ├── data
+│       │   ├── docs
+│       │   ├── logs
+│       │   ├── README.md
+│       │   ├── requirements.txt
+│       │   ├── scripts
+│       │   ├── src
+│       │   │   └── server.py
+│       │   ├── static
+│       │   ├── templates
+│       │   │   └── index.html
+│       │   └── tests
+│       │       ├── test_banking_system.py
+│       │       └── test_client_api.py
+│       └── README.md
+├── projects
+│   ├── banking-system
+│   │   ├── config
+│   │   │   └── project.json
+│   │   ├── data
+│   │   ├── docs
+│   │   ├── logs
+│   │   ├── README.md
+│   │   ├── requirements.txt
+│   │   ├── scripts
+│   │   ├── src
+│   │   │   └── server.py
+│   │   ├── static
+│   │   ├── templates
+│   │   │   └── index.html
+│   │   └── tests
+│   │       ├── test_banking_system.py
+│   │       └── test_client_api.py
+│   └── README.md
+├── README.md
+├── refactored.txt
+├── repository_organization_report.md
+├── tools
+│   └── scripts
+│       └── clone_commit.py
+├── TRIAL.md
+└── TRIAL.pdf
+
+132 directories, 130 files
