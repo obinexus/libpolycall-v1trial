@@ -1,140 +1,125 @@
-# libpolycall
-A Program First Data-Oriented Program Interface Implementation
-
-## Author
-OBINexusComputing - Nnamdi Michael Okpala
+# libpolycall Node.js Bindings
 
 ## Overview
 
-libpolycall is a polymorphic library that implements a program-first approach to interface design and business integration. It uses both direct protocol implementation and stateless HTTPS architecture to serve clients.
+`libpolycall` is a comprehensive library designed to facilitate data-oriented programming interfaces. This repository provides Node.js bindings for `libpolycall`, enabling seamless integration with Node.js applications.
 
-## Key Features
+## Features
 
-- Program-primary interface design 
-- Stateless HTTPS communication
-- Flexible client bindings
-- Strong state management
-- Network transport flexibility
-- Open source architecture
+- **Protocol Handling**: Manage communication protocols with ease.
+- **State Management**: Implement state machines with robust state transitions.
+- **Network Communication**: Handle network endpoints and client connections.
+- **Checksum Calculation**: Ensure data integrity with checksum utilities.
 
-## Why LibPolycall
-### Program First vs Binding First
+## Installation
 
-Traditional approaches:
-- Focus on language-specific bindings
-- Require separate implementations for each language
-- Tight coupling between implementation and binding
+To install the `libpolycall` Node.js bindings, run:
 
-libpolycall's approach:
-- Programs drive the implementation
-- Bindings are thin code mappings
-- Implementation details remain with drivers
-- Language agnostic core
-
-## Architecture
-
-libpolycall consists of:
-- Core protocol implementation
-- State machine management
-- Network communication layer
-- Checksum and integrity verification
-- Driver system for hardware/platform specifics
-
-### Drivers vs Bindings
-
-**Drivers:**
-- Contain implementation-specific details
-- Handle hardware/platform interactions
-- Maintain their own state
-- Implement core protocols
-
-**Bindings:**
-- Map language constructs to libpolycall APIs
-- No implementation details
-- Pure interface translation
-- Lightweight and stateless
-
-## Building from Source
-
-### Prerequisites
-```bash
-# Required packages
-sudo apt-get install build-essential cmake libssl-dev make
+```sh
+npm install @obinexuscomputing/node-polycall
 ```
 
-### Build Steps
-```bash
-# Clone repository
-git clone https://gitlab.com/obinexuscomputing.pkg/libpolycall.git
-cd libpolycall
+## Usage
 
-# Create build directory
-mkdir build && cd build
+### Basic Example
 
-# Configure and build
-cmake ..
-make
+```js
+const { PolyCallClient, MESSAGE_TYPES, PROTOCOL_FLAGS } = require('node-polycall');
 
-# Install
-sudo make install
+async function main() {
+    const client = new PolyCallClient({
+        host: 'localhost',
+        port: 8080
+    });
+
+    client.on('connected', () => {
+        console.log('Connected to server');
+    });
+
+    client.on('authenticated', () => {
+        console.log('Authenticated with server');
+    });
+
+    client.on('state:changed', ({ from, to }) => {
+        console.log(`State changed from ${from} to ${to}`);
+    });
+
+    try {
+        await client.connect();
+        await client.authenticate({ username: 'test', password: 'test' });
+
+        const states = await client.getAllStates();
+        console.log('Current states:', states);
+
+        await client.transitionTo('ready');
+
+        const result = await client.executeCommand('status');
+        console.log('Command result:', result);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+main();
 ```
 
-## Usage Examples
+### API Reference
 
-### Node.js
-```javascript
-const { PolyCallClient } = require('node-polycall');
+#### PolyCallClient
 
-const client = new PolyCallClient({
-  host: 'localhost',
-  port: 8080
-});
+- **connect()**: Connect to the PolyCall server.
+- **disconnect()**: Disconnect from the PolyCall server.
+- **sendRequest(path, method, data)**: Send a request to the server.
+- **executeCommand(command, data)**: Execute a command on the server.
+- **transitionTo(stateName)**: Transition to a specified state.
+- **authenticate(credentials)**: Authenticate with the server.
+- **isConnected()**: Check if connected to the server.
+- **isAuthenticated()**: Check if authenticated with the server.
+- **getCurrentState()**: Get the current state.
+- **getStateHistory()**: Get the state history.
+- **getState(stateName)**: Get a specific state.
+- **getAllStates()**: Get all states.
+- **lockState(stateName)**: Lock a specific state.
+- **unlockState(stateName)**: Unlock a specific state.
 
-client.on('connected', () => {
-  console.log('Connected to libpolycall server');
-});
+## Development
 
-await client.connect();
+### Building from Source
+
+To build the Node.js bindings from source, follow these steps:
+
+1. Clone the repository:
+    ```sh
+    git clone https://gitlab.com/obinexuscomputing/libpolycall.git
+    cd libpolycall/bindings/node-polycall
+    ```
+
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+3. Build the project:
+    ```sh
+    npm run build
+    ```
+
+### Running Tests
+
+To run the tests, use:
+
+```sh
+npm test
 ```
-
-### Python
-```python
-import requests
-
-# Make requests to libpolycall server
-response = requests.get('https://libpolycall-server/api/endpoint')
-data = response.json()
-```
-
-### Browser
-```javascript
-import { PolyCallClient } from '@obinexuscomputing/polycall-web';
-
-const client = new PolyCallClient({
-  websocket: true,
-  endpoint: 'ws://localhost:8080'
-});
-
-client.on('state:changed', ({from, to}) => {
-  console.log(`State transition: ${from} -> ${to}`);
-});
-```
-
-## Benefits
-
-- Program-first design enables clean separation of concerns
-- Drivers handle implementation details independently
-- Bindings remain thin and maintainable
-- Platform/language agnostic core protocol
-- Strong state management and integrity checks
-- Secure data handling
-- Scalable architecture
-
-## License
-
-MIT License. Copyright (c) OBINexusComputing.
-Attribution required for business use.
 
 ## Contributing
 
-Please read CONTRIBUTING.md for details on submitting pull requests.
+Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+Special thanks to the contributors and the open-source community for their support and contributions.
