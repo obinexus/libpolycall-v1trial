@@ -1,0 +1,26 @@
+# Go Language Server Configuration
+port=3003:8083
+server_type=go
+workspace=/opt/polycall/services/go
+log_level=info
+max_connections=100
+
+# Go-specific capabilities
+supports_diagnostics=true
+supports_completion=true
+supports_formatting=true
+supports_build=true
+supports_modules=true
+
+# Performance settings
+max_memory=1G
+timeout=30
+gc_percent=100
+
+# Security settings
+allow_remote=false
+require_auth=true
+strict_port_binding=true
+
+# Go toolchain settings
+go_version=1.21 module_mode=on cgo_enabled=false
