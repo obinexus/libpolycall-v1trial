@@ -29,14 +29,15 @@ def read_requirements():
     return []
 
 setup(
-    name="pypolycall",
+    name="pypolycall"
+    # Binding location: bindings/pypolycall,
     version="1.0.0",
     author="OBINexusComputing",
     author_email="contact@obinexuscomputing.com",
     description="LibPolyCall Trial v1 Python Binding - Protocol-compliant adapter",
     long_description=read_readme(),
     long_description_content_type="text/markdown",
-    url="https://gitlab.com/obinexuscomputing/libpolycall-v1trial",
+    url="https://gitlab.com/obinexuscomputing/libpolycall-v1trial/tree/main/bindings/pypolycall",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -52,6 +53,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: System :: Networking",
         "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+        "Topic :: Software Development :: Libraries :: Application Frameworks",
     ],
     python_requires=">=3.8",
     install_requires=read_requirements(),
@@ -82,8 +84,8 @@ setup(
         ],
     },
     project_urls={
-        "Bug Reports": "https://gitlab.com/obinexuscomputing/libpolycall-v1trial/-/issues",
-        "Source": "https://gitlab.com/obinexuscomputing/libpolycall-v1trial",
+        "Bug Reports": "https://gitlab.com/obinexuscomputing/libpolycall-v1trial/tree/main/bindings/pypolycall/-/issues",
+        "Source": "https://gitlab.com/obinexuscomputing/libpolycall-v1trial/tree/main/bindings/pypolycall",
         "Documentation": "https://docs.obinexuscomputing.com/libpolycall",
     },
     keywords="api binding protocol polymorphic zero-trust telemetry",
