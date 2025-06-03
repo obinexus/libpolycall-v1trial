@@ -1,4 +1,4 @@
 """
-PyPolyCall Tests
-LibPolyCall Trial v1 Protocol Compliance Testing
+PyPolyCall Test Suite
+Comprehensive testing for protocol compliance
 """
