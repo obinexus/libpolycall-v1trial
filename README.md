@@ -2,6 +2,9 @@
 
 **From the Desk of Nnamdi Michael Okpala, Founder - OBINexusComputing**
 ---
+<link rel="icon" type="image/x-icon" href="rh.ico">
+
+![Founder](images/founder.png)
 
 ## "The future isn't coming—it's here. And it speaks every language."
 
