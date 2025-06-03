@@ -1,0 +1,56 @@
+PyPolyCall Migration Analysis Report
+Generated: Tue Jun  3 10:52:40 PM BST 2025
+=
+
+## Outdated Structure:
+bindings/pypolycall-outdated
+├── config
+├── docs
+├── examples
+│   └── test_client_api.py
+├── __init__.py
+├── README.md
+├── src
+│   ├── __init__.py
+│   └── modules
+│       ├── __init__.py
+│       ├── network_endpoint.py
+│       ├── polycall_client.py
+│       ├── protocol_handler.py
+│       ├── router.py
+│       └── state_machine.py
+└── tests
+
+7 directories, 10 files
+
+## New Structure:
+pypolycall
+├── docs
+├── examples
+├── MANIFEST.in
+├── pypolycall
+│   ├── cli.py
+│   ├── config
+│   ├── core
+│   │   ├── binding.py
+│   │   └── __init__.py
+│   ├── ffi
+│   ├── __init__.py
+│   ├── protocol
+│   │   ├── constants.py
+│   │   └── __init__.py
+│   └── telemetry
+├── README.md
+├── requirements.txt
+├── scripts
+├── setup.py
+└── tests
+    ├── conftest.py
+    ├── __init__.py
+    ├── integration
+    ├── test_protocol_compliance.py
+    └── unit
+
+13 directories, 13 files
+
+## Files in both versions:
