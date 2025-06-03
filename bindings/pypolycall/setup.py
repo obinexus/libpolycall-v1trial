@@ -29,7 +29,7 @@ def read_requirements():
     return []
 
 setup(
-    name="pypolycall"
+    name="pypolycall",
     # Binding location: bindings/pypolycall,
     version="1.0.0",
     author="OBINexusComputing",
