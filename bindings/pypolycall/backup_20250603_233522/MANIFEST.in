@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pypolycall/config/*.json
+include pypolycall/config/*.yaml
+include pypolycall/templates/*.py
+recursive-exclude tests *
+recursive-exclude docs/_build *
+global-exclude *.pyc
+global-exclude __pycache__
