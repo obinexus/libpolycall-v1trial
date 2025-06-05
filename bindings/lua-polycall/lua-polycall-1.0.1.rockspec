@@ -29,45 +29,56 @@ description = {
    ]],
    homepage = "https://github.com/obinexus/libpolycall-v1trial",
    issues_url = "https://github.com/obinexus/libpolycall-v1trial/issues",
-   license = "MIT"
+   license = "MIT",
+   maintainer = "Nnamdi Michael Okpala <obinexuscomputing@gmail.com>"
 }
 
 dependencies = {
-   "lua >= 5.3, < 5.5"
-}
-
-external_dependencies = {
-   LUASOCKET = {
-      library = "socket"
-   },
-   LUASEC = {
-      library = "ssl"
-   }
+   "lua >= 5.3, < 5.5",
+   "luasocket >= 3.0",
+   "luasec >= 1.0",
+   "lua-cjson >= 2.1"
 }
 
 build = {
    type = "builtin",
    
-   -- Pre-installation validation
    install = {
       lua = {
          -- Core adapter modules
-         ["polycall.core"] = "polycall/core.lua",
-         ["polycall.telemetry"] = "polycall/telemetry.lua", 
-         ["polycall.state"] = "polycall/state.lua",
-         ["polycall.protocol"] = "polycall/protocol.lua",
-         ["polycall.auth"] = "polycall/auth.lua",
-         ["polycall.config"] = "polycall/config.lua",
+         ["polycall.core.binding"] = "polycall/core/binding.lua",
+         ["polycall.core.protocol"] = "polycall/core/protocol.lua",
+         ["polycall.core.state"] = "polycall/core/state.lua",
+         ["polycall.core.telemetry"] = "polycall/core/telemetry.lua",
+         ["polycall.core.auth"] = "polycall/core/auth.lua",
          
-         -- CLI and utilities
-         ["polycall.cli"] = "polycall/cli.lua",
-         ["polycall.utils"] = "polycall/utils.lua",
-         ["polycall.logger"] = "polycall/logger.lua",
+         -- Configuration management
+         ["polycall.config.manager"] = "polycall/config/manager.lua",
+         ["polycall.config.validator"] = "polycall/config/validator.lua",
          
-         -- Protocol compliance validators
+         -- CLI framework
+         ["polycall.cli.main"] = "polycall/cli/main.lua",
+         ["polycall.cli.commands.info"] = "polycall/cli/commands/info.lua",
+         ["polycall.cli.commands.test"] = "polycall/cli/commands/test.lua",
+         ["polycall.cli.commands.telemetry"] = "polycall/cli/commands/telemetry.lua",
+         ["polycall.cli.registry"] = "polycall/cli/registry.lua",
+         
+         -- Utilities and validation
+         ["polycall.utils.logger"] = "polycall/utils/logger.lua",
+         ["polycall.utils.validator"] = "polycall/utils/validator.lua",
+         ["polycall.utils.crypto"] = "polycall/utils/crypto.lua",
+         
+         -- Exception handling
+         ["polycall.exceptions.protocol"] = "polycall/exceptions/protocol.lua",
+         ["polycall.exceptions.connection"] = "polycall/exceptions/connection.lua",
+         
+         -- Validators
          ["polycall.validators.setup"] = "polycall/validators/setup.lua",
+         ["polycall.validators.runtime"] = "polycall/validators/runtime.lua",
          ["polycall.validators.ssh"] = "polycall/validators/ssh.lua",
-         ["polycall.validators.runtime"] = "polycall/validators/runtime.lua"
+         
+         -- Main module
+         ["polycall"] = "polycall/init.lua"
       },
       
       bin = {
@@ -77,119 +88,28 @@ build = {
       conf = {
          ["lua-polycall.conf"] = "config/lua-polycall.conf"
       }
-   },
-   
-   -- Custom build hooks for protocol compliance validation
-   pre_install_lua = [[
-      -- Protocol Compliance Pre-Installation Validation
-      local lfs = require("lfs")
-      local io = require("io")
-      local os = require("os")
-      
-      print("=== OBINexus lua-polycall Protocol Compliance Validation ===")
-      
-      -- Validate setup script execution
-      local setup_marker = ".polycall-lua-setup-complete"
-      local setup_file = io.open(setup_marker, "r")
-      if not setup_file then
-         print("ERROR: Setup script not executed.")
-         print("Please run: ./scripts/setup-lua-polycall")
-         print("This ensures proper Lua environment configuration and protocol validation.")
-         error("Pre-installation validation failed: setup-lua-polycall not executed")
-      end
-      setup_file:close()
-      print("✓ Setup script validation passed")
-      
-      -- Validate SSH certificate configuration
-      local ssh_cert_path = os.getenv("POLYCALL_SSH_CERT_PATH")
-      if not ssh_cert_path then
-         print("WARNING: POLYCALL_SSH_CERT_PATH environment variable not set")
-         print("SSH certificate-based authentication may be required for secure protocol communication")
-         print("Recommended: export POLYCALL_SSH_CERT_PATH=/path/to/your/ssh/cert")
-      else
-         local cert_file = io.open(ssh_cert_path, "r")
-         if not cert_file then
-            print("WARNING: SSH certificate file not found at: " .. ssh_cert_path)
-            print("Secure protocol communication may be compromised")
-         else
-            cert_file:close()
-            print("✓ SSH certificate validation passed")
-         end
-      end
-      
-      -- Validate polycall.exe runtime availability
-      local polycall_check = os.execute("which polycall.exe >/dev/null 2>&1")
-      if polycall_check ~= 0 then
-         print("WARNING: polycall.exe runtime not found in PATH")
-         print("The lua-polycall adapter requires polycall.exe to function")
-         print("All operations will fail without the runtime binary")
-      else
-         print("✓ polycall.exe runtime detected")
-      end
-      
-      -- Protocol architecture compliance notice
-      print("")
-      print("PROTOCOL COMPLIANCE NOTICE:")
-      print("- This binding is an ADAPTER for polycall.exe runtime")
-      print("- No direct code execution - all operations route to polycall.exe")
-      print("- Zero-trust architecture enforced")
-      print("- State machine transitions validated")
-      print("- Telemetry observation enabled")
-      print("")
-      print("Installation proceeding with protocol compliance validated...")
-   ]]
-}
-
--- Test configuration
-test = {
-   type = "busted",
-   flags = { "--verbose" },
-   modules = {
-      "spec.protocol_compliance_spec",
-      "spec.adapter_pattern_spec", 
-      "spec.zero_trust_spec",
-      "spec.state_machine_spec",
-      "spec.telemetry_spec"
    }
 }
 
--- Development dependencies
+test = {
+   type = "busted",
+   flags = { "--verbose", "--coverage" },
+   modules = {
+      "spec.core.binding_spec",
+      "spec.core.protocol_spec",
+      "spec.core.state_spec",
+      "spec.core.telemetry_spec",
+      "spec.cli.main_spec",
+      "spec.config.manager_spec",
+      "spec.utils.validator_spec",
+      "spec.integration.runtime_spec"
+   }
+}
+
 test_dependencies = {
    "busted >= 2.0",
    "luassert >= 1.8",
-   "luacov >= 0.15"
+   "luacov >= 0.15",
+   "ldoc >= 1.4"
 }
 
--- Package metadata for protocol tracking
-extra = {
-   protocol_version = "1.0",
-   architecture_pattern = "adapter",
-   polycall_runtime_required = true,
-   zero_trust_compliant = true,
-   state_machine_binding = true,
-   telemetry_integrated = true,
-   obinexus_project = "libpolycall-v1trial",
-   maintainer = "Nnamdi Michael Okpala <obinexuscomputing@gmail.com>",
-   
-   -- Aegis project waterfall methodology compliance
-   development_methodology = "waterfall",
-   project_phase = "trial_v1",
-   collaboration_model = "aegis_engineering",
-   
-   -- Protocol compliance assertions
-   prohibited_behaviors = {
-      "direct_execution",
-      "protocol_bypass", 
-      "local_state_persistence",
-      "security_disable",
-      "standalone_operation"
-   },
-   
-   required_behaviors = {
-      "runtime_dependency",
-      "adapter_pattern",
-      "zero_trust",
-      "state_machine",
-      "telemetry_integration"
-   }
-}
