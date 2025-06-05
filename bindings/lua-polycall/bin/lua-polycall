@@ -1,0 +1,5 @@
+#!/usr/bin/env lua
+
+-- LibPolyCall Trial v1 - Lua CLI Entry Point
+local cli = require('polycall.cli')
+os.exit(cli.run(arg))
