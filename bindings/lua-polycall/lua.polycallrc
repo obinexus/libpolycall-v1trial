@@ -1,0 +1,97 @@
+# LibPolyCall Trial v1 - Lua Language Server Configuration
+# OBINexus Aegis Engineering - Protocol-Compliant Adapter Configuration
+# Technical Lead: Nnamdi Michael Okpala - OBINexusComputing
+
+# Server binding configuration
+port=3004:8085
+server_type=lua
+workspace=/opt/polycall/services/lua
+log_level=info
+max_connections=50
+
+# Lua-specific capabilities
+supports_diagnostics=true
+supports_completion=true
+supports_formatting=false
+supports_build=true
+supports_modules=true
+supports_repl=true
+
+# Performance settings
+max_memory=512M
+timeout=30
+gc_mode=incremental
+
+# Security settings - Zero-Trust Architecture
+allow_remote=false
+require_auth=true
+strict_port_binding=true
+ssh_cert_required=true
+
+# Lua toolchain settings
+lua_version=5.3
+package_path_extension=true
+luarocks_integration=true
+cpath_management=true
+
+# Protocol compliance settings
+adapter_pattern_enforced=true
+runtime_dependency_required=true
+zero_trust_validation=true
+state_machine_binding=true
+telemetry_integration=true
+
+# LibPolyCall protocol configuration
+polycall_runtime_host=localhost
+polycall_runtime_port=8084
+protocol_version=1.0
+architecture_pattern=adapter
+
+# Development environment settings
+debug_mode=false
+verbose_logging=false
+stack_trace_enabled=true
+profiling_enabled=false
+
+# Module resolution settings
+module_search_paths=/opt/polycall/services/lua/modules
+luarocks_tree=/opt/polycall/services/lua/rocks
+custom_modules_path=/opt/polycall/services/lua/custom
+
+# Authentication configuration
+auth_method=ssh_certificate
+cert_path=/home/obinexus/.ssh/polycall/dev-cert.pem
+cert_validation_strict=true
+session_timeout=3600
+
+# Telemetry and observability
+telemetry_enabled=true
+silent_observation=true
+metrics_collection=true
+performance_monitoring=true
+protocol_event_logging=true
+
+# Error handling
+error_recovery_enabled=true
+automatic_reconnection=true
+max_retry_attempts=3
+backoff_strategy=exponential
+
+# Integration settings
+polybuild_integration=true
+nlink_compatibility=true
+aegis_methodology_compliance=waterfall
+project_phase=trial_v1
+
+# Resource management
+memory_limit=512M
+cpu_limit=2
+thread_pool_size=4
+connection_pool_size=10
+
+# Waterfall methodology compliance
+development_phase=trial_v1
+technical_lead=nnamdi_michael_okpala
+obinexus_project=libpolycall_v1trial
+collaboration_model=aegis_engineering
+
